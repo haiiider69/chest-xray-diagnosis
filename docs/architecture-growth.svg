@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="950" viewBox="0 0 1200 950" role="img" aria-labelledby="title desc">
+  <title id="title">Chest X-ray diagnosis architecture and growth roadmap</title>
+  <desc id="desc">Solid boxes show the current Kaggle notebook prototype: NIH data, patient-aware preparation, DenseNet121 training and evaluation, DVC model pointer, and a Gradio prediction and Grad-CAM demonstration. Dashed boxes show planned modular training, ONNX and FastAPI serving, a React application, and containerized continuous integration.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#42647d"/>
+    </marker>
+    <marker id="arrow-future" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#7b67bc"/>
+    </marker>
+    <style>
+      .bg { fill: #f4f7fb; }
+      .title { fill: #14283f; font: 700 29px Arial, sans-serif; }
+      .subtitle { fill: #53667c; font: 15px Arial, sans-serif; }
+      .panel-current { fill: #fff; stroke: #087e83; stroke-width: 2; }
+      .panel-future { fill: #fff; stroke: #9584cb; stroke-width: 2; stroke-dasharray: 9 7; }
+      .panel-title { fill: #087e83; font: 700 17px Arial, sans-serif; letter-spacing: 1.4px; }
+      .future-title { fill: #725cae; font: 700 17px Arial, sans-serif; letter-spacing: 1.4px; }
+      .box-current { fill: #e9f4f3; stroke: #087e83; stroke-width: 2; }
+      .box-training { fill: #eef3fb; stroke: #4e6f9e; stroke-width: 2; }
+      .box-artifact { fill: #fff4e7; stroke: #c98432; stroke-width: 2; }
+      .box-demo { fill: #eef6ff; stroke: #4b7eae; stroke-width: 2; }
+      .box-future { fill: #f4f1fa; stroke: #9584cb; stroke-width: 2; stroke-dasharray: 8 6; }
+      .box-heading { fill: #14283f; font: 700 16px Arial, sans-serif; }
+      .box-copy { fill: #53667c; font: 13px Arial, sans-serif; }
+      .connector { fill: none; stroke: #42647d; stroke-width: 2.4; marker-end: url(#arrow); }
+      .future-connector { fill: none; stroke: #7b67bc; stroke-width: 2.4; stroke-dasharray: 8 6; marker-end: url(#arrow-future); }
+      .note { fill: #53667c; font: 12px Arial, sans-serif; }
+      .legend-current { fill: #087e83; font: 700 12px Arial, sans-serif; }
+      .legend-future { fill: #725cae; font: 700 12px Arial, sans-serif; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1200" height="950" rx="20"/>
+  <text class="title" x="40" y="53">Chest X-ray diagnosis</text>
+  <text class="subtitle" x="40" y="81">From a notebook-based research prototype to a reproducible, serviceable application</text>
+
+  <rect x="34" y="111" width="1132" height="500" rx="16" fill="#fff" stroke="#b8d9d5" stroke-width="2"/>
+  <text class="panel-title" x="58" y="146">CURRENT PROTOTYPE · IMPLEMENTED IN THE NOTEBOOK</text>
+
+  <rect class="box-current" x="58" y="183" width="232" height="119" rx="12"/>
+  <text class="box-heading" x="76" y="214">NIH Chest X-ray 14</text>
+  <text class="box-copy" x="76" y="239">Images + patient labels</text>
+  <text class="box-copy" x="76" y="259">Official train / test lists</text>
+  <text class="box-copy" x="76" y="279">External Kaggle dataset</text>
+
+  <path class="connector" d="M290 242 H323"/>
+
+  <rect class="box-current" x="330" y="183" width="249" height="119" rx="12"/>
+  <text class="box-heading" x="348" y="214">Prepare and split</text>
+  <text class="box-copy" x="348" y="239">Group by patient for validation</text>
+  <text class="box-copy" x="348" y="259">Resize to 224 × 224</text>
+  <text class="box-copy" x="348" y="279">Normalize; flip training images</text>
+
+  <path class="connector" d="M579 242 H612"/>
+
+  <rect class="box-training" x="619" y="183" width="252" height="119" rx="12"/>
+  <text class="box-heading" x="637" y="214">Train and evaluate</text>
+  <text class="box-copy" x="637" y="239">ImageNet DenseNet121</text>
+  <text class="box-copy" x="637" y="259">14 outputs · weighted BCE</text>
+  <text class="box-copy" x="637" y="279">Per-class and mean validation AUC</text>
+
+  <path class="connector" d="M871 242 H904"/>
+
+  <rect class="box-artifact" x="911" y="183" width="231" height="119" rx="12"/>
+  <text class="box-heading" x="929" y="214">Best model weights</text>
+  <text class="box-copy" x="929" y="239">State dict, stored separately</text>
+  <text class="box-copy" x="929" y="259">DVC pointer committed to Git</text>
+  <text class="box-copy" x="929" y="279">DVC remote not configured</text>
+
+  <path class="connector" d="M1026 302 V339 H750 V365"/>
+
+  <rect class="box-demo" x="173" y="365" width="869" height="115" rx="12"/>
+  <text class="box-heading" x="197" y="397">Interactive notebook demo · Gradio</text>
+  <text class="box-copy" x="197" y="423">Upload X-ray  →  14 disease scores  →  select a finding  →  Grad-CAM heatmap overlay</text>
+  <text class="box-copy" x="197" y="448">Research / education demonstration; no clinical validation or use</text>
+
+  <rect x="58" y="514" width="230" height="55" rx="10" fill="#edf6f5" stroke="#b8d9d5"/>
+  <text class="box-copy" x="76" y="538">Validation: 12,608 images</text>
+  <text class="box-copy" x="76" y="557">Mean AUC: 0.831</text>
+
+  <rect x="306" y="514" width="252" height="55" rx="10" fill="#fff6ec" stroke="#ecd2ae"/>
+  <text class="box-copy" x="324" y="538">Official test: 25,596 images</text>
+  <text class="box-copy" x="324" y="557">Aggregate result not reported</text>
+
+  <rect x="576" y="514" width="566" height="55" rx="10" fill="#f4f7fb" stroke="#d9e3e9"/>
+  <text class="box-copy" x="594" y="538">Prototype: Kaggle notebook · CUDA / NVIDIA T4</text>
+  <text class="box-copy" x="594" y="557">Large dataset and model binary are not stored in Git</text>
+
+  <rect x="34" y="635" width="1132" height="264" rx="16" fill="#fff" stroke="#cfc5e7" stroke-width="2" stroke-dasharray="10 7"/>
+  <text class="future-title" x="58" y="672">POTENTIAL GROWTH · PLANNED, NOT YET IMPLEMENTED</text>
+
+  <rect class="box-future" x="58" y="709" width="244" height="116" rx="12"/>
+  <text class="box-heading" x="77" y="741">Reusable ML pipeline</text>
+  <text class="box-copy" x="77" y="766">Modular data and training code</text>
+  <text class="box-copy" x="77" y="786">MLflow · tests · test evaluation</text>
+  <text class="box-copy" x="77" y="806">Versioned data / model artifacts</text>
+
+  <path class="future-connector" d="M302 767 H331"/>
+
+  <rect class="box-future" x="339" y="709" width="237" height="116" rx="12"/>
+  <text class="box-heading" x="358" y="741">Model serving</text>
+  <text class="box-copy" x="358" y="766">Export to ONNX</text>
+  <text class="box-copy" x="358" y="786">FastAPI prediction service</text>
+  <text class="box-copy" x="358" y="806">Health and metadata endpoints</text>
+
+  <path class="future-connector" d="M576 767 H605"/>
+
+  <rect class="box-future" x="613" y="709" width="237" height="116" rx="12"/>
+  <text class="box-heading" x="632" y="741">User interface</text>
+  <text class="box-copy" x="632" y="766">React web application</text>
+  <text class="box-copy" x="632" y="786">Image upload and example gallery</text>
+  <text class="box-copy" x="632" y="806">Scores and Grad-CAM display</text>
+
+  <path class="future-connector" d="M850 767 H879"/>
+
+  <rect class="box-future" x="887" y="709" width="255" height="116" rx="12"/>
+  <text class="box-heading" x="906" y="741">Build and validate</text>
+  <text class="box-copy" x="906" y="766">Docker Compose · CI checks</text>
+  <text class="box-copy" x="906" y="786">External / subgroup evaluation</text>
+  <text class="box-copy" x="906" y="806">Calibration and clinical review</text>
+
+  <line x1="58" y1="858" x2="88" y2="858" stroke="#087e83" stroke-width="3"/>
+  <text class="legend-current" x="98" y="862">Implemented / present</text>
+  <line x1="258" y1="858" x2="288" y2="858" stroke="#9584cb" stroke-width="3" stroke-dasharray="7 5"/>
+  <text class="legend-future" x="298" y="862">Planned / potential future architecture</text>
+  <text class="note" x="58" y="886">Prediction scores and visual explanations are research outputs, not diagnoses or treatment recommendations.</text>
+</svg>
