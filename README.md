@@ -117,11 +117,7 @@ The resulting `best_model.pth` is a PyTorch `state_dict` for DenseNet121 with a 
 - [ ] Add Docker Compose, automated lint/tests/builds, and the technical report.
 
 ## Team and context
-
-End-of-module project for **Deep Learning Avancé** (TEK-UP, ING-5, 2026–2027), also submitted for **Big Data**.
-
 - Hayder Methneni
-- Khaled Ayedi
 
 ## References
 
