@@ -118,6 +118,7 @@ The resulting `best_model.pth` is a PyTorch `state_dict` for DenseNet121 with a 
 
 ## Team and context
 - Hayder Methneni
+- khaled ayedi
 
 ## References
 
